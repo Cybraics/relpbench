@@ -11,6 +11,8 @@ import (
 
 	"time"
 
+	"strings"
+
 	"github.com/Cybraics/gorelp"
 	log "github.com/sirupsen/logrus"
 )
@@ -74,7 +76,7 @@ func copyLines(input *bufio.Reader, output chan string) error {
 			if debug {
 				log.Info("Got string: ", line)
 			}
-			output <- line
+			output <- strings.TrimRight(line, "\n\r")
 		}
 		if err != nil {
 			return err
